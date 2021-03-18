@@ -1,5 +1,5 @@
-import { Car } from './car.entity';
-import { LuxuryCarSpecification } from './car.specification';
+import { Car } from '../car.entity';
+import { LuxuryCarSpecification } from '../car.specification';
 
 describe('car.specification', () => {
      let CURRENT_YEAR: number;

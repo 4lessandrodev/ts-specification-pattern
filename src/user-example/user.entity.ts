@@ -1,11 +1,17 @@
 import { Car } from '../car-example/car.entity';
-import { Entity } from '../shared/entity.interface';
+import { Entity } from '../shared/interfaces/entity.interface';
+
+export enum permissions {
+     'ADMIN',
+     'DEVELOPER',
+}
 
 interface IUser {
      name: string;
      age: number;
      balance: number;
      isSingle: boolean;
+     permission: keyof typeof permissions;
      car?: Car;
 }
 
@@ -36,6 +42,10 @@ export class User extends Entity<IUser> implements IUserMethods {
 
      get car(): Car | null {
           return this.props.car ?? null;
+     }
+
+     get permission(): keyof typeof permissions {
+          return this.props.permission;
      }
 
      buyCar(car: Car): void {

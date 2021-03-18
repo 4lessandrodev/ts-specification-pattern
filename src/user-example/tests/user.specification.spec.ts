@@ -1,5 +1,8 @@
-import { User } from './user.entity';
-import { AdultUser, RichSingleUserSpecification } from './user.specification';
+import { User } from '../user.entity';
+import {
+     AdultUserSpecification,
+     RichUserSpecification,
+} from '../user.specification';
 
 describe('user.specification', () => {
      let CURRENT_YEAR: number;
@@ -14,9 +17,10 @@ describe('user.specification', () => {
                balance: 500001,
                isSingle: true,
                name: 'Jane Doe',
+               permission: 'ADMIN',
           });
 
-          const richUserSpecification = new RichSingleUserSpecification();
+          const richUserSpecification = new RichUserSpecification();
           const isRichSigleUser = richUserSpecification.isSatisfiedBy(user);
 
           expect(isRichSigleUser).toBe(true);
@@ -28,9 +32,10 @@ describe('user.specification', () => {
                balance: 10,
                isSingle: true,
                name: 'Jane Doe',
+               permission: 'ADMIN',
           });
 
-          const richUserSpecification = new RichSingleUserSpecification();
+          const richUserSpecification = new RichUserSpecification();
           const isRichSigleUser = richUserSpecification.isSatisfiedBy(user);
 
           expect(isRichSigleUser).toBe(false);
@@ -42,6 +47,7 @@ describe('user.specification', () => {
                balance: 500001,
                isSingle: true,
                name: 'Jane Doe',
+               permission: 'ADMIN',
           });
 
           const john = User.create({
@@ -49,10 +55,11 @@ describe('user.specification', () => {
                balance: 500001,
                isSingle: true,
                name: 'John Doe',
+               permission: 'ADMIN',
           });
 
-          const rich = new RichSingleUserSpecification();
-          const adult = new AdultUser();
+          const rich = new RichUserSpecification();
+          const adult = new AdultUserSpecification();
 
           const result = rich.and(adult).isSatisfiedBy(john);
 
@@ -65,6 +72,7 @@ describe('user.specification', () => {
                balance: 500001,
                isSingle: true,
                name: 'Jane Doe',
+               permission: 'ADMIN',
           });
 
           const john = User.create({
@@ -72,10 +80,11 @@ describe('user.specification', () => {
                balance: 500001,
                isSingle: true,
                name: 'John Doe',
+               permission: 'ADMIN',
           });
 
-          const rich = new RichSingleUserSpecification();
-          const adult = new AdultUser();
+          const rich = new RichUserSpecification();
+          const adult = new AdultUserSpecification();
 
           const result = rich.and(adult).isSatisfiedBy(jane);
 

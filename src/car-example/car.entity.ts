@@ -1,4 +1,4 @@
-import { Entity } from '../shared/entity.interface';
+import { Entity } from '../shared/interfaces/entity.interface';
 
 export enum Colors {
      BLACK = 'BLACK',
